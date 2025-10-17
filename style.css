@@ -100,14 +100,22 @@ ul {
     background-color: #283593;
 }
 
-/* --- CABEÇALHO --- */
+/* --- [CÓDIGO ATUALIZADO] CABEÇALHO --- */
 .header {
-    background-color: var(--white-color);
+    background-color: transparent; /* Fundo transparente por padrão */
     padding: 1rem 0;
-    position: sticky;
+    position: fixed; /* Fica fixo no topo da tela */
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Animação suave */
+}
+
+/* NOVO ESTADO: Quando o header tiver a classe .scrolled */
+.header.scrolled {
+    background-color: var(--white-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-content {
@@ -119,8 +127,14 @@ ul {
 .logo {
     font-family: var(--heading-font);
     font-size: 1.8rem;
-    color: var(--primary-color);
+    color: var(--white-color); /* Logo branco por padrão */
     font-weight: 600;
+    transition: color 0.4s ease;
+}
+
+/* Logo quando o header for rolado */
+.header.scrolled .logo {
+    color: var(--primary-color);
 }
 
 .main-nav ul {
@@ -130,35 +144,57 @@ ul {
 
 .main-nav a {
     font-weight: bold;
-    color: var(--text-color);
+    color: var(--white-color); /* Links brancos por padrão */
     transition: color 0.3s ease;
 }
 
-.main-nav a:hover {
-    color: var(--primary-color);
+/* Links quando o header for rolado */
+.header.scrolled .main-nav a {
+    color: var(--text-color);
 }
 
-/* --- SEÇÃO HERO (PÁGINA INICIAL) --- */
+/* Efeito hover dos links quando rolado */
+.header.scrolled .main-nav a:hover {
+    color: var(--primary-color);
+}
+/* --- [CÓDIGO FINAL E CORRIGIDO] SEÇÃO HERO --- */
+
+/* Esta regra posiciona o bloco de conteúdo no centro da imagem */
 .hero {
-    height: 90vh;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('source/hero-banner.jpg') no-repeat center center/cover; /* ALtere aqui */
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: var(--white-color);
+    height: 90vh;
     padding: 0 2rem;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('source/hero-banner.jpg') no-repeat center center/cover;
+    color: var(--white-color);
 }
+
+/* Esta regra transforma o bloco de conteúdo em um organizador de itens */
+.hero-content {
+    display: flex;          /* Ativa o modo flex para organizar o h1, p, e o botão */
+    flex-direction: column; /* Empilha os itens um sobre o outro */
+    align-items: center;    /* Centraliza TODOS os itens (h1, p, botão) horizontalmente */
+    width: 100%;            /* Garante que o container ocupe o espaço necessário */
+    max-width: 700px;       /* Define um limite de largura para o texto não ficar muito espalhado */
+}
+
+/* Esta regra garante que o TEXTO DENTRO do h1 e do p também seja centralizado */
+.hero-content h1,
+.hero-content p {
+    text-align: center;
+}
+
+/* Estilos originais para o texto (pode ajustar se quiser) */
 .hero-content h1 {
     font-size: 4rem;
-    color: var(--white-color);
     margin-bottom: 1rem;
+    color: var(--white-color);
 }
 
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    max-width: 600px;
 }
 
 /* --- GRID DE PRODUTOS (PÁGINA INICIAL E PRODUTOS) --- */
