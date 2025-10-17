@@ -5,3 +5,8 @@ git add .
 git commit -m "mensagem"
 
 git push
+
+
+-- 
+
+git push no vscode para atualizar
