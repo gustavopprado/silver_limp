@@ -26,6 +26,8 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--white-color);
+    /* Adiciona padding no topo para compensar o header fixo */
+    padding-top: 82px; 
 }
 
 .container {
@@ -100,22 +102,16 @@ ul {
     background-color: #283593;
 }
 
-/* --- [CÓDIGO ATUALIZADO] CABEÇALHO --- */
+/* --- [NOVO DESIGN] CABEÇALHO FIXO AZUL --- */
 .header {
-    background-color: transparent; /* Fundo transparente por padrão */
-    padding: 1rem 0;
-    position: fixed; /* Fica fixo no topo da tela */
+    background-color: var(--primary-color);
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    transition: background-color 0.4s ease, box-shadow 0.4s ease; /* Animação suave */
-}
-
-/* NOVO ESTADO: Quando o header tiver a classe .scrolled */
-.header.scrolled {
-    background-color: var(--white-color);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .header-content {
@@ -124,17 +120,10 @@ ul {
     align-items: center;
 }
 
-.logo {
-    font-family: var(--heading-font);
-    font-size: 1.8rem;
-    color: var(--white-color); /* Logo branco por padrão */
-    font-weight: 600;
-    transition: color 0.4s ease;
-}
-
-/* Logo quando o header for rolado */
-.header.scrolled .logo {
-    color: var(--primary-color);
+.logo img { 
+    height: 50px; /* Ajuste o tamanho se necessário */
+    width: auto; 
+    vertical-align: middle; 
 }
 
 .main-nav ul {
@@ -144,48 +133,43 @@ ul {
 
 .main-nav a {
     font-weight: bold;
-    color: var(--white-color); /* Links brancos por padrão */
-    transition: color 0.3s ease;
+    color: var(--white-color);
+    transition: color 0.3s ease, border-color 0.3s ease;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
 }
 
-/* Links quando o header for rolado */
-.header.scrolled .main-nav a {
-    color: var(--text-color);
+.main-nav a:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
 }
 
-/* Efeito hover dos links quando rolado */
-.header.scrolled .main-nav a:hover {
-    color: var(--primary-color);
-}
-/* --- [CÓDIGO FINAL E CORRIGIDO] SEÇÃO HERO --- */
-
-/* Esta regra posiciona o bloco de conteúdo no centro da imagem */
+/* --- SEÇÃO HERO --- */
 .hero {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 100vh; /* Ocupa a tela inteira */
     padding: 0 2rem;
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('source/hero-banner.jpg') no-repeat center center/cover;
     color: var(--white-color);
+    /* Puxa o hero para cima para ficar atrás do header */
+    margin-top: -82px; 
 }
 
-/* Esta regra transforma o bloco de conteúdo em um organizador de itens */
 .hero-content {
-    display: flex;          /* Ativa o modo flex para organizar o h1, p, e o botão */
-    flex-direction: column; /* Empilha os itens um sobre o outro */
-    align-items: center;    /* Centraliza TODOS os itens (h1, p, botão) horizontalmente */
-    width: 100%;            /* Garante que o container ocupe o espaço necessário */
-    max-width: 700px;       /* Define um limite de largura para o texto não ficar muito espalhado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
 }
 
-/* Esta regra garante que o TEXTO DENTRO do h1 e do p também seja centralizado */
 .hero-content h1,
 .hero-content p {
     text-align: center;
 }
 
-/* Estilos originais para o texto (pode ajustar se quiser) */
 .hero-content h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
@@ -195,9 +179,10 @@ ul {
 .hero-content p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+    color: var(--white-color);
 }
 
-/* --- GRID DE PRODUTOS (PÁGINA INICIAL E PRODUTOS) --- */
+/* --- GRID DE PRODUTOS --- */
 .featured-products, .products-page {
     background-color: var(--secondary-color);
 }
@@ -253,7 +238,7 @@ ul {
 .blog-cta { text-align: center; }
 .blog-cta p { max-width: 600px; margin: 0 auto 2rem auto; }
 
-/* --- [NOVO] PÁGINA DE DETALHE DO PRODUTO --- */
+/* --- PÁGINA DE DETALHE DO PRODUTO --- */
 .product-detail-page {
     padding: 4rem 0;
 }
@@ -369,17 +354,18 @@ ul {
     .hero-content h1 { font-size: 2.5rem; }
     .features-grid { grid-template-columns: 1fr; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .product-detail-layout { grid-template-columns: 1fr; } /* [NOVO] */
+    .product-detail-layout { grid-template-columns: 1fr; }
+    .about-layout { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 500px) {
     section { padding: 4rem 0; }
     .container { padding: 0 1rem; }
     .main-nav ul { gap: 1rem; font-size: 0.9rem; }
-    .product-info h1 { font-size: 2.2rem; } /* [NOVO] */
+    .product-info h1 { font-size: 2.2rem; }
 }
 
-/* --- [NOVO] PÁGINA DE DICAS DE LIMPEZA --- */
+/* --- PÁGINA DE DICAS DE LIMPEZA --- */
 .page-header {
     background-color: var(--secondary-color);
     text-align: center;
@@ -404,7 +390,7 @@ ul {
     background-color: var(--white-color);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -425,7 +411,7 @@ ul {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Faz o conteúdo ocupar o espaço disponível */
+    flex-grow: 1;
 }
 
 .tip-category {
@@ -437,7 +423,7 @@ ul {
     font-size: 0.8rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    align-self: flex-start; /* Alinha o item ao início */
+    align-self: flex-start;
 }
 
 .tip-card-content h3 {
@@ -446,7 +432,7 @@ ul {
 }
 
 .tip-card-content p {
-    flex-grow: 1; /* Empurra o link "Leia Mais" para baixo */
+    flex-grow: 1;
     margin-bottom: 1.5rem;
 }
 
@@ -464,15 +450,14 @@ ul {
     margin-left: 0.5rem;
 }
 
-/* --- [NOVO] PÁGINA SOBRE NÓS --- */
-
+/* --- PÁGINA SOBRE NÓS --- */
 .about-section {
     padding: 4rem 0 6rem 0;
 }
 
 .about-layout {
     display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Coluna da imagem menor que a do texto */
+    grid-template-columns: 1fr 1.5fr;
     gap: 3rem;
     align-items: center;
 }
@@ -522,9 +507,78 @@ ul {
     padding-bottom: 5px;
 }
 
-/* Ajuste na responsividade da página Sobre */
-@media (max-width: 768px) {
-    .about-layout {
-        grid-template-columns: 1fr;
-    }
+/* --- [NOVO DESIGN V2] PÁGINA DE DICA ESTILO PRODUTO --- */
+
+.tip-article-page {
+    padding: 4rem 0 6rem 0;
+}
+
+/* Aplica o layout de duas colunas */
+.tip-content.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Coluna da imagem menor que a do texto */
+    gap: 3rem;
+    align-items: flex-start; /* Alinha o topo das colunas */
+}
+
+/* Estilos para a imagem na coluna da esquerda */
+.tip-image-container .tip-header-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Efeito "grudento" ao rolar a página */
+    top: 120px;       /* Distância do topo para começar a "grudar" */
+}
+
+/* Estilos para o conteúdo na coluna da direita */
+.tip-article-body h1 {
+    font-size: 2.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tip-article-body .intro {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.tip-article-body h3 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tip-article-body ul,
+.tip-article-body ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tip-article-body ul li,
+.tip-article-body ol li {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.tip-article-body ul li i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+/* Estilo para a caixa de chamada para o produto */
+.related-product-cta {
+    background-color: var(--secondary-color);
+    padding: 1.5rem;
+    margin-top: 3rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.related-product-cta h4 {
+    margin-bottom: 1rem;
 }
